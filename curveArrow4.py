@@ -21,7 +21,7 @@ def main():
         
         trs = pm.createNode( 'transform', n= trsName)
 
-        ctrl = curveHexagon(ctrlName)
+        ctrl = curveArrow4(ctrlName)
 
         pm.parent(ctrl, trs)
         pm.parent(trs, sel)
@@ -30,20 +30,32 @@ def main():
         pm.rotate( 0, 0, 0 , os=True)
         pm.parent(trs ,w = True)
 
-def curveHexagon(name):
-    height = 2
-    a1 = (0,-1,0)
-    a2 = (0,-0.5,0.87)
-    a3 = (0,0.5,0.87)
-    a4 = (0,1,0)
-    a5 = (0,0.5,-0.87)
-    a6 = (0,-0.5,-0.87)
-    b1 = (height,-1,0)
-    b2 = (height,-0.5,0.87)
-    b3 = (height,0.5,0.87)
-    b4 = (height,1,0)
-    b5 = (height,0.5,-0.87)
-    b6 = (height,-0.5,-0.87)
+def curveArrow4(name):
+    a00 = (0,-1,-1)
+    a01 = (0,-3,-1)
+    a02 = (0,-3,-2)
+    a03 = (0,-5,0)
+    a04 = (0,-3,2)
+    a05 = (0,-3,1)
+    a06 = (0,-1,1)
+    a07 = (0,-1,3)
+    a08 = (0,-2,3)
+    a09 = (0,0,5)
+    a10 = (0,2,3)
+    a11 = (0,1,3)
+    a12 = (0,1,1)
+    a13 = (0,3,1)
+    a14 = (0,3,2)
+    a15 = (0,5,0)
+    a16 = (0,3,-2)
+    a17 = (0,3,-1)
+    a18 = (0,1,-1)
+    a19 = (0,1,-3)
+    a20 = (0,2,-3)
+    a21 = (0,0,-5)
+    a22 = (0,-2,-3)
+    a23 = (0,-1,-3)
+    a24 = (0,-1,-1)
 
-    tmpCurve = pm.curve( d=1,p=[a1,a2,a3,a4,a5,a6,a1,b1,b2,a2,b2,b3,a3,b3,b4,a4,b4,b5,a5,b5,b6,a6,b6,b1], n= name )
+    tmpCurve = pm.curve( d=1,p=[a00,a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a00], n = name)
     return name
