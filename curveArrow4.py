@@ -49,20 +49,20 @@ class CreateCurve():
     
     def doubleCheck(self):
         scene = self.getSceneName()
-        agoNullName = '_'.join( ['null', 'trsNameA', scene, 'C'] )
-        agoCtrlName = '_'.join( ['ctrl', 'curveNameA', scene, 'C'] )
+        agoNullName = '_'.join( ['null', 'trsName', scene, 'C', '00'] )
+        agoCtrlName = '_'.join( ['ctrl', 'curveName', scene, 'C', '00'] )
 
         if pm.objExists(agoNullName):
-            for i in range(26):
-                agoNullName = '_'.join( ['null', 'trsName' + chr(65+i), scene, 'C'] )
-                agoCtrlName = '_'.join( ['ctrl', 'curveName' + chr(65+i), scene, 'C'] )
+            for i in range(1000):
+                agoNullName = '_'.join( ['null', 'trsName', scene, 'C', str(i).zfill(2)] )
+                agoCtrlName = '_'.join( ['ctrl', 'curveName', scene, 'C', str(i).zfill(2)] )
                 if not pm.objExists(agoNullName or agoCtrlName):
                     trsName = agoNullName
                     ctrlName = agoCtrlName
                     break
         else :
-            trsName = '_'.join( ['null', 'trsNameA', scene, 'C'] )
-            ctrlName = '_'.join( ['ctrl', 'curveNameA', scene, 'C'] )
+            trsName = '_'.join( ['null', 'trsName', scene, 'C', '00'] )
+            ctrlName = '_'.join( ['ctrl', 'curveName', scene, 'C', '00'] )
 
         return trsName,ctrlName
 
