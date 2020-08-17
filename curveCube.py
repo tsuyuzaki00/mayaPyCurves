@@ -18,34 +18,34 @@ class CreateCurve():
         return scene
         
     def curveCube(self, name):
-        a1 = (1,1,1)
-        a2 = (1,1,-1)
-        a3 = (-1,1,-1)
-        a4 = (-1,1,1)
-        b1 = (1,-1,1)
-        b2 = (1,-1,-1)
-        b3 = (-1,-1,-1)
-        b4 = (-1,-1,1)
+        a1 = (10,10,10)
+        a2 = (10,10,-10)
+        a3 = (-10,10,-10)
+        a4 = (-10,10,10)
+        b1 = (10,-10,10)
+        b2 = (10,-10,-10)
+        b3 = (-10,-10,-10)
+        b4 = (-10,-10,10)
 
         pm.curve( d=1,p=[a1,a2,a3,a4,a1,b1,b2,a2,b2,b3,a3,b3,b4,a4,b4,b1], n= name)
         return name
     
     def doubleCheck(self):
         scene = self.getSceneName()
-        agoNullName = '_'.join( ['null', 'trsName', scene, 'C', '00'] )
-        agoCtrlName = '_'.join( ['ctrl', 'curveName', scene, 'C', '00'] )
+        agoNullName = '_'.join( ['C', 'trsName', 'null', scene, '00'] )
+        agoCtrlName = '_'.join( ['C', 'curveName', 'ctrl', scene, '00'] )
 
         if pm.objExists(agoNullName):
             for i in range(1000):
-                agoNullName = '_'.join( ['null', 'trsName', scene, 'C', str(i).zfill(2)] )
-                agoCtrlName = '_'.join( ['ctrl', 'curveName', scene, 'C', str(i).zfill(2)] )
+                agoNullName = '_'.join( ['C', 'trsName', 'null', scene, str(i).zfill(2)] )
+                agoCtrlName = '_'.join( ['C', 'curveName', 'ctrl', scene, str(i).zfill(2)] )
                 if not pm.objExists(agoNullName or agoCtrlName):
                     trsName = agoNullName
                     ctrlName = agoCtrlName
                     break
         else :
-            trsName = '_'.join( ['null', 'trsName', scene, 'C', '00'] )
-            ctrlName = '_'.join( ['ctrl', 'curveName', scene, 'C', '00'] )
+            trsName = '_'.join( ['C', 'trsName', 'null', scene, '00'] )
+            ctrlName = '_'.join( ['C', 'curveName', 'ctrl', scene, '00'] )
 
         return trsName,ctrlName
 
