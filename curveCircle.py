@@ -18,27 +18,28 @@ class CreateCurve():
         return scene
         
     def curveCircle(self, name):
-        pm.circle( nr=(1, 0, 0), c=(0, 0, 0), sw=360, r=2, n = name)
+        pm.circle( nr = (1, 0, 0), c = (0, 0, 0), sw = 360, r = 2, ch = False, n = name)
         return name
     
     def doubleCheck(self):
         scene = self.getSceneName()
-        agoNullName = '_'.join( ['null', 'trsName', scene, 'C', '00'] )
-        agoCtrlName = '_'.join( ['ctrl', 'curveName', scene, 'C', '00'] )
+        agoNullName = '_'.join( ['C', 'objName', 'null', scene, '00'] )
+        agoCtrlName = '_'.join( ['C', 'objName', 'ctrl', scene, '00'] )
 
         if pm.objExists(agoNullName):
             for i in range(1000):
-                agoNullName = '_'.join( ['null', 'trsName', scene, 'C', str(i).zfill(2)] )
-                agoCtrlName = '_'.join( ['ctrl', 'curveName', scene, 'C', str(i).zfill(2)] )
+                agoNullName = '_'.join( ['C', 'objName', 'null', scene, str(i).zfill(2)] )
+                agoCtrlName = '_'.join( ['C', 'objName', 'ctrl', scene, str(i).zfill(2)] )
                 if not pm.objExists(agoNullName or agoCtrlName):
                     trsName = agoNullName
                     ctrlName = agoCtrlName
                     break
         else :
-            trsName = '_'.join( ['null', 'trsName', scene, 'C', '00'] )
-            ctrlName = '_'.join( ['ctrl', 'curveName', scene, 'C', '00'] )
+            trsName = '_'.join( ['C', 'objName', 'null', scene, '00'] )
+            ctrlName = '_'.join( ['C', 'objName', 'ctrl', scene, '00'] )
 
         return trsName,ctrlName
+
     def createCurve(self):
         nameCheck = self.doubleCheck()
         self.trsSetting(nameCheck[0],nameCheck[1])
